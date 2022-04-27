@@ -8,6 +8,20 @@
     <fragment
         android:id="@+id/fragmentNewsListing"
         android:name="com.demo.newappdemo.ui.fragments.NewsListingFragment"
-        tools:layout="@layout/fragment_news_listing"></fragment>
+        android:label="@string/news_list"
+        tools:layout="@layout/fragment_news_listing">
+        <action
+            android:id="@+id/action_fragmentNewsListing_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.demo.newappdemo.ui.fragments.NewsDetailFragment"
+        android:label="@string/news_detail"
+        tools:layout="@layout/fragment_news_detail">
+        <argument
+            android:name="newsModel"
+            app:argType="com.demo.newappdemo.model.NewsResponseModel$Article" />
+    </fragment>
 
 </navigation>

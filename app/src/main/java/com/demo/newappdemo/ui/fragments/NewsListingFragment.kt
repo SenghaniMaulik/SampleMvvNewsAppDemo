@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.newappdemo.R
 import com.demo.newappdemo.adapter.NewsAdapter
@@ -33,13 +34,14 @@ class NewsListingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNewsListingBinding.inflate(inflater, container, false)
-        return binding.root
+        if (_binding == null) {
+            _binding = FragmentNewsListingBinding.inflate(inflater, container, false)
+            setData()
+        }
+        return _binding?.root?:binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Timber.e("onViewCreated")
+    private fun setData() {
         if (requireContext().checkForInternetConnection()) {
             viewModel.getNewsData()
         } else {
@@ -50,6 +52,7 @@ class NewsListingFragment : Fragment() {
         setObserver()
     }
 
+
     private fun setOnClicks() {
     }
 
@@ -58,7 +61,11 @@ class NewsListingFragment : Fragment() {
             when (view.id) {
                 R.id.clMain -> {
                     val data = `object` as NewsResponseModel.Article
-
+                    findNavController().navigate(
+                        NewsListingFragmentDirections.actionFragmentNewsListingToNewsDetailFragment(
+                            data
+                        )
+                    )
                 }
             }
         }
@@ -66,7 +73,6 @@ class NewsListingFragment : Fragment() {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-
     }
 
     private fun setObserver() {
@@ -92,5 +98,10 @@ class NewsListingFragment : Fragment() {
     private fun showProgressBar(isShow: Boolean) {
         binding.progressCircular.isVisible = isShow
         binding.rvNewsList.isVisible = !isShow
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+//        _binding = null
     }
 }

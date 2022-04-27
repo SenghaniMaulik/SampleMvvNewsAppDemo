@@ -28,15 +28,18 @@ class NewsAdapter(val context: Context, val mListener: AdapterClickListener) :
     }
 
     override fun onBindViewHolder(holder: ServiceProviderViewHolder, position: Int) {
-        val newsModel = list[position]
-
+        val newsModel = list[holder.absoluteAdapterPosition]
         holder.binding.apply {
             newsModel.apply {
                 imgNews.loadImageFromUrl(urlToImage)
                 txtTitle.text = title
                 txtLink.text = url
                 txtAuthor.text = author
-                txtDate.text=publishedAt
+                txtDate.text = publishedAt
+
+                clMain.setOnClickListener {
+                    mListener.onItemClick(it, holder.absoluteAdapterPosition, newsModel)
+                }
             }
 
         }
