@@ -38,7 +38,7 @@ class NewsDetailFragment : Fragment() {
 
         binding.imgNews.setOnClickListener {
             findNavController().navigate(
-                NewsListingFragmentDirections.actionFragmentNewsListingToNewsDetailFragment(
+                NewsDetailFragmentDirections.actionNewsDetailFragmentToNewsImageFragment(
                     args.newsModel
                 )
             )

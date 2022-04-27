@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/newsImageFragment"
         android:name="com.demo.newappdemo.ui.fragments.NewsImageFragment"
-        android:label="fragment_image_detail"
+        android:label="@string/image"
         tools:layout="@layout/fragment_image_detail">
         <argument
             android:name="newsModel"
