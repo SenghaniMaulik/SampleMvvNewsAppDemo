@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.demo.newappdemo.common.AdapterClickListener
+import com.demo.newappdemo.data.database.entities.ArticleEntity
 import com.demo.newappdemo.databinding.ItemNewsAdapterBinding
 import com.demo.newappdemo.model.NewsResponseModel
 import com.demo.newappdemo.utils.loadImageFromUrl
@@ -12,7 +13,7 @@ import com.demo.newappdemo.utils.loadImageFromUrl
 class NewsAdapter(val context: Context, val mListener: AdapterClickListener) :
     RecyclerView.Adapter<NewsAdapter.ServiceProviderViewHolder>() {
 
-    var list = mutableListOf<NewsResponseModel.Article>()
+    var list = mutableListOf<ArticleEntity>()
 
     class ServiceProviderViewHolder(val binding: ItemNewsAdapterBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -47,7 +48,7 @@ class NewsAdapter(val context: Context, val mListener: AdapterClickListener) :
 
     override fun getItemCount(): Int = list.size
 
-    fun addData(newList: List<NewsResponseModel.Article>, isNew: Boolean = true) {
+    fun addData(newList: List<ArticleEntity>, isNew: Boolean = true) {
         if (isNew) {
             list = newList.toMutableList()
         } else {

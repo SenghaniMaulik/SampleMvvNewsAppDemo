@@ -5,8 +5,7 @@
     android:id="@+id/clMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.NewsDetailFragment"
-    >
+    tools:context=".ui.fragments.NewsDetailFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -59,7 +58,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/imgNews"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-                tools:text="@tools:sample/lorem/random" />
+                tools:text="@tools:sample/lorem" />
 
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -78,14 +77,14 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtContent"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:ellipsize="end"
                 android:textColor="@android:color/darker_gray"
                 app:layout_constraintEnd_toStartOf="@+id/imgNews"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtAuthor"
-                tools:text="@tools:sample/lorem/random" />
+                tools:text="@tools:sample/lorem" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -97,7 +96,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/imgNews"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-                tools:text="@tools:sample/lorem/random" />
+                tools:text="@tools:sample/lorem" />
 
 
             <androidx.appcompat.widget.AppCompatTextView

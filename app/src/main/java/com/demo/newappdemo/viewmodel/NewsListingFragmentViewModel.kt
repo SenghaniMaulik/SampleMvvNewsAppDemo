@@ -36,6 +36,7 @@ class NewsListingFragmentViewModel @Inject constructor(
                 response.body()?.let {
                     if (it.status == Constant.API_RESPONSE_STATUS.OK) {
                         it.articles?.let { data ->
+                            repository.local.insertNewsList(data)
                             _newsList.value = NetworkResult.Success(
                                 it
                             )
@@ -44,6 +45,23 @@ class NewsListingFragmentViewModel @Inject constructor(
                         setErrorMessage(it.message)
                     }
                 }
+            } catch (e: Exception) {
+                Timber.e(e.localizedMessage)
+                setErrorMessage(mContext.getString(R.string.something_went_wrong))
+            }
+        }
+    }
+
+    fun getNewsDataLocal(
+    ) {
+        viewModelScope.launch {
+            try {
+                _newsList.value = NetworkResult.Loading()
+                val newsList = repository.local.getNewsList()
+                _newsList.value = NetworkResult.Success(
+                    NewsResponseModel(status = Constant.API_RESPONSE_STATUS.OK, articles = newsList)
+                )
+
             } catch (e: Exception) {
                 Timber.e(e.localizedMessage)
                 setErrorMessage(mContext.getString(R.string.something_went_wrong))

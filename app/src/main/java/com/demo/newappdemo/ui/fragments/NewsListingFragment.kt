@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.newappdemo.R
 import com.demo.newappdemo.adapter.NewsAdapter
+import com.demo.newappdemo.data.database.entities.ArticleEntity
 import com.demo.newappdemo.databinding.FragmentNewsListingBinding
 import com.demo.newappdemo.model.NewsResponseModel
 import com.demo.newappdemo.utils.NetworkResult
@@ -18,7 +19,6 @@ import com.demo.newappdemo.utils.checkForInternetConnection
 import com.demo.newappdemo.utils.toast
 import com.demo.newappdemo.viewmodel.NewsListingFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class NewsListingFragment : Fragment() {
@@ -38,13 +38,14 @@ class NewsListingFragment : Fragment() {
             _binding = FragmentNewsListingBinding.inflate(inflater, container, false)
             setData()
         }
-        return _binding?.root?:binding.root
+        return _binding?.root ?: binding.root
     }
 
     private fun setData() {
         if (requireContext().checkForInternetConnection()) {
             viewModel.getNewsData()
         } else {
+            viewModel.getNewsDataLocal()
             getString(R.string.no_internet).toast(requireContext())
         }
         setupNewsAdapter()
@@ -60,7 +61,7 @@ class NewsListingFragment : Fragment() {
         newsAdapter = NewsAdapter(requireContext()) { `view`, `pos`, `object` ->
             when (view.id) {
                 R.id.clMain -> {
-                    val data = `object` as NewsResponseModel.Article
+                    val data = `object` as ArticleEntity
                     findNavController().navigate(
                         NewsListingFragmentDirections.actionFragmentNewsListingToNewsDetailFragment(
                             data

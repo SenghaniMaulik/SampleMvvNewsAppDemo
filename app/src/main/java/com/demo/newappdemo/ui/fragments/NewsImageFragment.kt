@@ -6,14 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.demo.newappdemo.databinding.FragmentImageDetailBinding
 import com.demo.newappdemo.databinding.FragmentNewsDetailBinding
 import com.demo.newappdemo.utils.loadImageFromUrl
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ImageDetailFragment : Fragment() {
+class NewsImageFragment : Fragment() {
 
-    private var _binding: FragmentNewsDetailBinding? = null
+    private var _binding: FragmentImageDetailBinding? = null
     private val binding get() = _binding!!
 
     private val args: NewsDetailFragmentArgs by navArgs()
@@ -23,7 +24,7 @@ class ImageDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNewsDetailBinding.inflate(inflater, container, false)
+        _binding = FragmentImageDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,12 +37,6 @@ class ImageDetailFragment : Fragment() {
         binding.apply {
             args.newsModel.apply {
                 imgNews.loadImageFromUrl(urlToImage)
-                txtTitle.text = title
-                txtDescription.text = content
-                txtContent.text = description
-                txtLink.text = url
-                txtAuthor.text = author
-                txtDate.text = publishedAt
             }
         }
     }

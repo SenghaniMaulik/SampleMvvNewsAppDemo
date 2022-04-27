@@ -21,7 +21,21 @@
         tools:layout="@layout/fragment_news_detail">
         <argument
             android:name="newsModel"
-            app:argType="com.demo.newappdemo.model.NewsResponseModel$Article" />
+            app:argType="com.demo.newappdemo.data.database.entities.ArticleEntity" />
+        <action
+            android:id="@+id/action_newsDetailFragment_to_newsImageFragment"
+            app:destination="@id/newsImageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsImageFragment"
+        android:name="com.demo.newappdemo.ui.fragments.NewsImageFragment"
+        android:label="fragment_image_detail"
+        tools:layout="@layout/fragment_image_detail">
+        <argument
+            android:name="newsModel"
+            app:argType="com.demo.newappdemo.data.database.entities.ArticleEntity" />
+
+
     </fragment>
 
 </navigation>
