@@ -92,6 +92,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:autoLink="web"
+                android:textColorLink="@android:color/holo_blue_light"
                 android:textColor="@android:color/holo_red_light"
                 app:layout_constraintEnd_toStartOf="@+id/imgNews"
                 app:layout_constraintStart_toStartOf="parent"

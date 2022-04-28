@@ -6,6 +6,10 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
+import timber.log.Timber
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 object Utils {
 
@@ -38,5 +42,19 @@ object Utils {
                 currentFocusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
             )
         }
+    }
+
+    fun parseDate(selectedDate: String, currentFormat: String, requiredFormat: String): String {
+
+        val dt = SimpleDateFormat(currentFormat, Locale.US)
+        var day = ""
+        try {
+            val date = dt.parse(selectedDate)
+            val dt1 = SimpleDateFormat(requiredFormat, Locale.getDefault())
+            day = dt1.format(date)
+        } catch (e: ParseException) {
+            Timber.e(e)
+        }
+        return day
     }
 }

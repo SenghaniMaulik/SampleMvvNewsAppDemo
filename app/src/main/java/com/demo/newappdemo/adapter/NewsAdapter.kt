@@ -8,6 +8,9 @@ import com.demo.newappdemo.common.AdapterClickListener
 import com.demo.newappdemo.data.database.entities.ArticleEntity
 import com.demo.newappdemo.databinding.ItemNewsAdapterBinding
 import com.demo.newappdemo.model.NewsResponseModel
+import com.demo.newappdemo.utils.Constant.DATE.Companion.LOCAL
+import com.demo.newappdemo.utils.Constant.DATE.Companion.SERVER
+import com.demo.newappdemo.utils.Utils
 import com.demo.newappdemo.utils.loadImageFromUrl
 
 class NewsAdapter(val context: Context, val mListener: AdapterClickListener) :
@@ -36,8 +39,7 @@ class NewsAdapter(val context: Context, val mListener: AdapterClickListener) :
                 txtTitle.text = title
                 txtLink.text = url
                 txtAuthor.text = author
-                txtDate.text = publishedAt
-
+                txtDate.text = Utils.parseDate(publishedAt,SERVER, LOCAL)
                 clMain.setOnClickListener {
                     mListener.onItemClick(it, holder.absoluteAdapterPosition, newsModel)
                 }

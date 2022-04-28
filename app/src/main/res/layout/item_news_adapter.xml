@@ -41,6 +41,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:ellipsize="end"
+                android:textColorLink="@android:color/holo_blue_light"
+                android:autoLink="web"
                 android:maxLines="1"
                 android:textColor="@color/purple_700"
                 app:layout_constraintEnd_toStartOf="@+id/imgNews"

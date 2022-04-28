@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.demo.newappdemo.databinding.FragmentNewsDetailBinding
+import com.demo.newappdemo.utils.Constant
+import com.demo.newappdemo.utils.Utils
 import com.demo.newappdemo.utils.loadImageFromUrl
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,7 +56,10 @@ class NewsDetailFragment : Fragment() {
                 txtContent.text = content
                 txtLink.text = url
                 txtAuthor.text = author
-                txtDate.text = publishedAt
+                txtDate.text = Utils.parseDate(publishedAt,
+                    Constant.DATE.SERVER,
+                    Constant.DATE.LOCAL
+                )
             }
         }
     }
